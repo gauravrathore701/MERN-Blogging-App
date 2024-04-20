@@ -1,9 +1,9 @@
 import MenuBar from "../components/menuBar";
 
-function MenuPage() {
+function CreateBlog() {
   return (
     <div>
-      <h1 className="page-title">Menu Board</h1>
+      <h1 className="page-title">Create Blog</h1>
       <div className="row">
         <div className="col-2 partition">
           <MenuBar />
@@ -14,4 +14,4 @@ function MenuPage() {
   );
 }
 
-export default MenuPage;
+export default CreateBlog;
