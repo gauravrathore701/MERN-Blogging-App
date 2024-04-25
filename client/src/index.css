@@ -32,3 +32,12 @@ code {
   margin-left: 100px;
   margin-top: 10px;
 }
+
+.dropdown {
+  border: 1px solid rgba(182, 182, 182, 0.418);
+  margin-top: 10px;
+  margin-left: 10px;
+  padding-left: 20px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}

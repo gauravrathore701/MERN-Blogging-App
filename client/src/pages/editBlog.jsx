@@ -3,9 +3,12 @@ import MenuBar from "../components/menuBar";
 import { data } from "../config";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function CreateBlog() {
+function EditBlog() {
+  const { state } = useLocation();
+  const { blogId } = state;
+
   const [category, setCategory] = useState([]);
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
@@ -20,22 +23,36 @@ function CreateBlog() {
     setCategory(category.data.data);
   };
 
-  const token = JSON.parse(localStorage.getItem("token"));
-
-  const addBlog = async () => {
-    const response = await axios.post(data.urlServer + "/blogs/insertblog", {
+  const updateBlog = async () => {
+    const response = await axios.post(data.urlServer + "/blogs/updateblog", {
       title,
       contents,
       category_id,
-      token,
+      blogId,
     });
     if (response.data.status === "Success") {
-      toast.success("Blog Added");
-      navigate("/allblogs");
+      toast.success("Blog Updated");
+      navigate("/myblogs");
     } else {
       toast.error("Error");
     }
   };
+
+  const getBlogData = async () => {
+    const response = await axios.post(data.urlServer + "/blogs/blogbyid", {
+      blogId,
+    });
+    if (response.data.status === "Success") {
+      setTitle(response.data.data[0].title);
+      setContents(response.data.data[0].contents);
+    } else {
+      toast.error("Error");
+    }
+  };
+
+  useEffect(() => {
+    getBlogData();
+  }, []);
 
   useEffect(() => {
     loadCategories();
@@ -60,6 +77,7 @@ function CreateBlog() {
                   onChange={(e) => {
                     setTitle(e.target.value);
                   }}
+                  value={title}
                 />
 
                 <div className="label">Content</div>
@@ -69,6 +87,7 @@ function CreateBlog() {
                   onChange={(e) => {
                     setContents(e.target.value);
                   }}
+                  value={contents}
                 ></textarea>
 
                 <label for="category" className="mt-2">
@@ -87,8 +106,8 @@ function CreateBlog() {
               </div>
 
               <div className="centered">
-                <button className="btn btn-success mt-3" onClick={addBlog}>
-                  Add Blog
+                <button className="btn btn-success mt-3" onClick={updateBlog}>
+                  Save Blog
                 </button>
               </div>
             </div>
@@ -100,4 +119,4 @@ function CreateBlog() {
   );
 }
 
-export default CreateBlog;
+export default EditBlog;

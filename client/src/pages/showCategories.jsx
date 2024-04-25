@@ -2,26 +2,22 @@ import axios from "axios";
 import MenuBar from "../components/menuBar";
 import { data } from "../config";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 
-function AllBlogs() {
-  const [result, setResult] = useState([]);
+function ShowCategories() {
+  const [result, setCategory] = useState([]);
 
-  const getBlogs = async () => {
-    const response = await axios.get(data.urlServer + "/blogs/allblogs");
-    if (response.data.status === "Success") {
-      setResult(response.data.data);
-    } else {
-      toast.error("Error loading Blogs");
-    }
+  const loadCategories = async () => {
+    const response = await axios(data.urlServer + "/category/allcategories");
+    setCategory(response.data.data);
   };
+
   useEffect(() => {
-    getBlogs();
+    loadCategories();
   }, []);
 
   return (
     <div>
-      <h1 className="page-title">All Blogs</h1>
+      <h1 className="page-title">Show Categories</h1>
       <div className="row">
         <div className="col-2 partition">
           <MenuBar />
@@ -39,7 +35,7 @@ function AllBlogs() {
                   <tr>
                     <td>{blog.id}</td>
                     <td>{blog.title}</td>
-                    <td>{blog.category}</td>
+                    <td>{blog.description}</td>
                   </tr>
                 );
               })}
@@ -51,4 +47,4 @@ function AllBlogs() {
   );
 }
 
-export default AllBlogs;
+export default ShowCategories;

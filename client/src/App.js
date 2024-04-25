@@ -10,6 +10,9 @@ import SearchBlog from "./pages/searchBlog";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AllBlogs from "./pages/allblogs";
+import AddCategory from "./pages/addCategory";
+import ShowCategories from "./pages/showCategories";
+import EditBlog from "./pages/editBlog";
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
         <Route path="/allblogs" element={<AllBlogs />} />
         <Route path="/createblog" element={<CreateBlog />} />
         <Route path="/searchblogs" element={<SearchBlog />} />
+        <Route path="/addcategory" element={<AddCategory />} />
+        <Route path="/showcategories" element={<ShowCategories />} />
+        <Route path="/editblog" element={<EditBlog />} />
       </Routes>
       <ToastContainer />
     </div>

@@ -33,7 +33,7 @@ function MenuBar() {
 
           <tr>
             <td>
-              <Link to="/categories" className="menu-items">
+              <Link to="/showcategories" className="menu-items">
                 Show Categories
               </Link>
             </td>
