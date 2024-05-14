@@ -1,12 +1,13 @@
 const mysql = require("mysql2");
+const credentials = require("./.env");
 
 // Create the connection pool. The pool-specific settings are the defaults
 const pool = mysql.createPool({
-  host: "sql6.freesqldatabase.com",
-  user: "sql6706373",
-  password: "DGwmPEhsGq",
-  database: "sql6706373",
-  port: "3306",
+  host: HOST,
+  user: DATABASE_USER,
+  password: DATABASE_PASSWORD,
+  database: DATABASE_NAME,
+  port: PORT_NUMBER,
   waitForConnections: true,
   connectionLimit: 10,
   maxIdle: 10, // max idle connections, the default value is the same as `connectionLimit`

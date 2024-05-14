@@ -174,3 +174,5 @@ packages/react-devtools-timeline/dist
 
 # Personal Additions
 privateInfo.md
+server/.env
+client/config.js

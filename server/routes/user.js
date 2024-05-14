@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const db = require("../db");
 const utils = require("../utils");
-const secret = require("../secret");
+const credentials = require("../.env");
 
 const router = express.Router();
 
@@ -56,7 +56,7 @@ router.post("/login", (request, response) => {
           const payload = { id: user.id };
 
           // creating JWT Token
-          const token = jwt.sign(payload, secret.JWT_Secret);
+          const token = jwt.sign(payload, JWT_SECRET);
 
           const userData = {
             name: `${user.firstName} ${user.lastName}`,
