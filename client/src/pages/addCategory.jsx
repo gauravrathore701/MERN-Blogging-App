@@ -18,7 +18,7 @@ function AddCategory() {
     );
     if (response.status === 200) {
       toast.success("Category added");
-      navigate("/allblogs");
+      navigate("/showcategories");
     } else {
       toast.error("Error");
     }

@@ -36,7 +36,7 @@ function MyBlogs() {
         <div className="col-10">
           <table className="table table-striped">
             <thead>
-              <th>User ID</th>
+              <th>Blog ID</th>
               <th>Title</th>
               <th>Category Name</th>
               <th>Actions</th>
@@ -64,7 +64,7 @@ function MyBlogs() {
                             data.urlServer + "/blogs/deleteblog",
                             { id: blog.id }
                           );
-                          navigate("/allblogs");
+                          getBlogs();
                         }}
                       >
                         X
